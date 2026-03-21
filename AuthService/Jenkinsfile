@@ -24,7 +24,7 @@ pipeline {
             echo "✅ Auth service CI passed"
         }
         failure {
-            echo "❌ Auth service CI failed"
+            echo "❌ Auth service CI failed 03"
         }
         always {
             sh "docker rmi auth-service:latest || true"
