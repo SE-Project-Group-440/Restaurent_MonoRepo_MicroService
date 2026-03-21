@@ -11,8 +11,9 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-               dir('AuthService') {
-                sh "docker build -t auth-service:latest ."
+                dir('AuthService') {
+                    sh "docker build -t auth-service:latest ."
+                }
             }
         }
 
@@ -23,7 +24,7 @@ pipeline {
             echo "✅ Auth service CI passed"
         }
         failure {
-            echo "❌ Auth service CI is faile 01"
+            echo "❌ Auth service CI failed"
         }
         always {
             sh "docker rmi auth-service:latest || true"
