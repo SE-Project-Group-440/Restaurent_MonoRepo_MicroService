@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                sh "docker build -t auth-service:latest ."
+            }
+        }
+
+    }
+
+    post {
+        success {
+            echo "✅ Auth service CI passed"
+        }
+        failure {
+            echo "❌ Auth service CI failed"
+        }
+        always {
+            sh "docker rmi auth-service:latest || true"
+            cleanWs()
+        }
+    }
+}
