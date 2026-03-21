@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                dir('DeliveryService') {
+                    sh "docker build -t delivery-service:latest ."
+                }
+            }
+        }
+
+    }
+
+    post {
+        success {
+            echo "✅ Delivery service CI passed"
+        }
+        failure {
+            echo "❌ Delivery service CI failed"
+        }
+        always {
+            sh "docker rmi delivery-service:latest || true"
+            cleanWs()
+        }
+    }
+}
