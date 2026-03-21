@@ -15,7 +15,7 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                dir('EmailService') {
+                dir('EmailService/EmailService') {
                     sh "docker build -t email-service:${IMAGE_TAG} ."
                 }
             }
