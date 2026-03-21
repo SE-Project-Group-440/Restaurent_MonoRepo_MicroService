@@ -28,7 +28,7 @@ pipeline {
             echo " Email service CI passed - Image: email-service:${IMAGE_TAG}"
         }
         failure {
-            echo " Email service CI failed"
+            echo " Email service CI fail for testing"
         }
         always {
             sh "docker rmi email-service:${IMAGE_TAG} || true"
