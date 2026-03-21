@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_TAG = "${env.GIT_COMMIT[0..7]}"
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                dir('EmailService') {
+                    sh "docker build -t email-service:${IMAGE_TAG} ."
+                }
+            }
+        }
+
+    }
+
+    post {
+        success {
+            echo " Email service CI passed - Image: email-service:${IMAGE_TAG}"
+        }
+        failure {
+            echo " Email service CI failed"
+        }
+        always {
+            sh "docker rmi email-service:${IMAGE_TAG} || true"
+            cleanWs()
+        }
+    }
+}
