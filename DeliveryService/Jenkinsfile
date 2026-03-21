@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        IMAGE_TAG = "${env.GIT_COMMIT[0..7]}"
+    }
+
     stages {
 
         stage('Checkout') {
@@ -12,7 +16,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 dir('DeliveryService') {
-                    sh "docker build -t delivery-service:latest ."
+                    sh "docker build -t delivery-service:${IMAGE_TAG} ."
                 }
             }
         }
@@ -21,13 +25,13 @@ pipeline {
 
     post {
         success {
-            echo "✅ Delivery service CI passed"
+            echo " Delivery service CI passed - Image: delivery-service:${IMAGE_TAG}"
         }
         failure {
-            echo "❌ Delivery service CI failed"
+            echo " Delivery service CI failed"
         }
         always {
-            sh "docker rmi delivery-service:latest || true"
+            sh "docker rmi delivery-service:${IMAGE_TAG} || true"
             cleanWs()
         }
     }
