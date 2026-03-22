@@ -51,12 +51,12 @@ services:
     ports:
       - "8080:8080"
 
-  api-gateway:
+  frontend:
     build:
-      context: ./ApiGateway
+      context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "5000:5000"
+      - "5173:5173"
     depends_on:
       - restaurant
       - order
@@ -65,11 +65,3 @@ services:
       - email
       - auth
 
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    ports:
-      - "5173:5173"
-    depends_on:
-      - api-gateway   

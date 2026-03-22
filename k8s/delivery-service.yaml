@@ -6,15 +6,15 @@ metadata:
     kompose.version: 1.30.0 (9d8dcb518)
   creationTimestamp: null
   labels:
-    io.kompose.service: auth
-  name: auth
+    io.kompose.service: delivery
+  name: delivery
   namespace: default
 spec:
   ports:
-    - name: "8080"
-      port: 8080
-      targetPort: 8080
+    - name: "8084"
+      port: 8084
+      targetPort: 8084
   selector:
-    io.kompose.service: auth
+    io.kompose.service: delivery
 status:
   loadBalancer: {}
