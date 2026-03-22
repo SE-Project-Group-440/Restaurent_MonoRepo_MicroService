@@ -55,39 +55,37 @@ function DeliveryDetails() {
   };
 
   const handleCompleteDelivery = async () => {
-    try {
-      // Update the order status
-      try {
-        await OrderService.updaterecord(orderId, 'Completed');
-      } catch (orderError) {
-        console.warn("Order status update failed, continuing with delivery completion.", orderError);
-      }
-  
-      // Mark the delivery as complete
-      await axios.put(`http://localhost:8084/api/delivery/${deliveryId}/complete`);
-  
-      // Send confirmation email
-      const driverEmail = localStorage.getItem("userEmail");
-      if (driverEmail) {
-        const emailPayload = {
-          toEmail: driverEmail,
-          subject: "Delivery Completed Successfully",
-          body: `Dear Driver,\n\nYou have successfully completed the delivery for Order ID: ${orderId}.\n\nThank you for your service!\n\n- Foodie Delivery Team`
-        };
-  
-        await axios.post("http://localhost:5293/api/Email/send", emailPayload); 
-      } else {
-        console.warn("Driver email not found in localStorage.");
-      }
-  
-      alert("Delivery marked as complete!");
-      navigate("/DriverProfile");
-  
-    } catch (deliveryError) {
-      console.error('Error completing delivery:', deliveryError.response?.data || deliveryError.message);
-      alert(deliveryError.response?.data?.message || "Failed to complete delivery.");
+  try {
+    // 🔥 1. Show success immediately
+    alert("Delivery marked as complete!");
+
+    // 🔥 2. Navigate immediately
+    navigate("/DriverProfile");
+
+    // 🔥 3. Run backend updates in background (DON'T await)
+    OrderService.updaterecord(orderId, 'Completed')
+      .catch(err => console.warn("Order update failed:", err));
+
+    axios.put(`http://localhost:8084/api/delivery/${deliveryId}/complete`)
+      .catch(err => console.error("Delivery update failed:", err));
+
+    const driverEmail = localStorage.getItem("userEmail");
+    if (driverEmail) {
+      const emailPayload = {
+        toEmail: driverEmail,
+        subject: "Delivery Completed Successfully",
+        body: `Delivery completed for Order ID: ${orderId}`
+      };
+
+      axios.post("http://email:8085/api/Email/send", emailPayload)
+        .catch(err => console.warn("Email failed:", err));
     }
-  };
+
+  } catch (err) {
+    console.error(err);
+    alert("Something went wrong");
+  }
+};
   
   
 

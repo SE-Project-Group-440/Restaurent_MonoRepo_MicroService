@@ -8,13 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 var allowedOrigin = "http://localhost:5173";
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowReactApp",
-        builder =>
-        {
-            builder.WithOrigins(allowedOrigin)
-                   .AllowAnyHeader()
-                   .AllowAnyMethod();
-        });
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
 });
 
 // Configure MongoDB settings
@@ -44,14 +43,10 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
-app.UseHttpsRedirection();
-app.UseCors("AllowReactApp");
+app.UseCors("AllowAll");
 app.UseAuthorization();
 app.MapControllers();
 

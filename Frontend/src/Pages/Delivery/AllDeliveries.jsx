@@ -51,8 +51,12 @@ function AllDeliveries() {
   };
 
   useEffect(() => {
-    fetchDriverAndDeliveries();
-  }, []);
+  fetchDriverAndDeliveries();
+
+  const handleFocus = () => fetchDriverAndDeliveries();
+  window.addEventListener('focus', handleFocus);
+  return () => window.removeEventListener('focus', handleFocus);
+}, []);
 
   const handleAcceptDelivery = (deliveryId) => {
     if (hasActiveDelivery) {
@@ -80,6 +84,7 @@ function AllDeliveries() {
       });
   };
 
+  
   const handleSetPending = (deliveryId) => {
     axios
       .put(

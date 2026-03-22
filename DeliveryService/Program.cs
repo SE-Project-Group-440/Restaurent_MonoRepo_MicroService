@@ -1,4 +1,4 @@
-﻿
+
 using DeliveryService.Services;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -64,16 +64,7 @@ if (app.Environment.IsDevelopment())
 // Use CORS policy before any other middleware
 app.UseCors("AllowAll");
 
-app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
-// Helper function to detect Docker
-bool IsRunningInDocker()
-{
-    return Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true";
-}
-
-app.UseCors("AllowAll");

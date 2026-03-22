@@ -36,7 +36,6 @@ namespace OrderManagement.Controllers
         }
 
         [HttpPost]
-        [HttpPost]
         public async Task<ActionResult> CreateOrder([FromBody] CreateOrderDTO orderDto)
         {
             try
@@ -54,16 +53,14 @@ namespace OrderManagement.Controllers
             }
         }
         [HttpPatch("{id}")]
-        public async Task<ActionResult> UpdateOrderStatus(string id, string recordstatus)
+        public async Task<ActionResult> UpdateOrderStatus(string id, [FromQuery] string recordstatus)
         {
             var existingOrder = await _orderService.GetOrderAsync(id);
             if (existingOrder == null)
                 return NotFound(new { message = "Order not found" });
 
-            // Update only the status field
+            await _orderService.UpdateOrderStatusAsync(id, recordstatus);
             existingOrder.Status = recordstatus;
-
-            await _orderService.UpdateOrderAsync(id, existingOrder);
 
             return Ok(new { message = "Order successfully updated", order = existingOrder });
         }

@@ -3,9 +3,6 @@ using OrderManagement.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Define allowed origin
-var allowedOrigin = "http://localhost:5173";
-
 // Register MongoClient as a singleton using the connection string
 var mongoConnectionString = builder.Configuration.GetConnectionString("MongoDb");
 builder.Services.AddSingleton<IMongoClient>(serviceProvider =>
@@ -20,11 +17,11 @@ builder.Services.AddScoped<CartService>();
 // Add CORS services to the container
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowReactApp", policy =>
+    options.AddPolicy("AllowAll", policy =>
     {
-        policy.WithOrigins(allowedOrigin)  // Use the allowedOrigin variable
-              .AllowAnyMethod()            // Allow any HTTP method
-              .AllowAnyHeader();           // Allow any headers
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
     });
 });
 
@@ -42,26 +39,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// Only redirect to HTTPS if NOT running in Docker
-if (!IsRunningInDocker())
-{
-    app.UseHttpsRedirection();
-}
-
 // Use CORS middleware - Apply the correct CORS policy
-app.UseCors("AllowReactApp");
+app.UseCors("AllowAll");
 
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
-
-// Configure the app to listen on port 8082
-app.Urls.Add("http://*:8082");
-
-// Helper function to detect Docker
-bool IsRunningInDocker()
-{
-    return Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true";
-}
-
-app.UseCors("AllowAll");

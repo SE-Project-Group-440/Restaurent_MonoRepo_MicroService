@@ -13,13 +13,12 @@ builder.Services.AddScoped<MailService>();
 var allowedOrigin = "http://localhost:5173";
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowReactApp",
-        builder =>
-        {
-            builder.WithOrigins(allowedOrigin)
-                   .AllowAnyHeader()
-                   .AllowAnyMethod();
-        });
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
 });
 
 var app = builder.Build();
@@ -33,9 +32,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
-app.UseCors("AllowReactApp");
+app.UseCors("AllowAll");
 
 app.UseAuthorization();
 
