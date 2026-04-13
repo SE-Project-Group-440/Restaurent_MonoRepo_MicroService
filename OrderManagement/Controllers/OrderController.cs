@@ -100,7 +100,7 @@ namespace OrderManagement.Controllers
         {
             var orders = await _orderService.GetOrdersByCustomerIdAsync(customerId);
             if (orders == null || orders.Count == 0)
-                return NotFound(new { message = "No orders found for this customer" });
+                return Ok(new List<Order>());
 
             return Ok(orders);
         }
@@ -111,7 +111,7 @@ namespace OrderManagement.Controllers
         {
             var orders = await _orderService.GetOrdersByRestaurantIdAsync(restaurantId);
             if (orders == null || orders.Count == 0)
-                return NotFound(new { message = "No orders found for this restaurant" });
+                return Ok(new List<Order>());
 
             return Ok(orders);
         }
@@ -122,7 +122,7 @@ namespace OrderManagement.Controllers
         {
             var orders = await _orderService.GetOrdersByStatusAndRestaurantIdAsync(status, id);
             if (orders == null || orders.Count == 0)
-                return NotFound();
+                return Ok(new List<Order>());
 
             return Ok(orders);
         }
@@ -132,7 +132,7 @@ namespace OrderManagement.Controllers
         {
             var orders = await _orderService.GetOrdersByStatusAsync(status);
             if (orders == null || orders.Count == 0)
-                return NotFound();
+                return Ok(new List<Order>());
 
             return Ok(orders);
         }
