@@ -13,7 +13,7 @@ namespace PaymentService.Services
         {
             var client = new MongoClient(config["MongoDB:ConnectionString"]);
 
-            // Change the key to "MongoDB:ConnectionString"
+
             var database = client.GetDatabase("PaymentDb");
             _payments = database.GetCollection<Payment>("Payments");
         }
@@ -22,7 +22,7 @@ namespace PaymentService.Services
         {
             var options = new PaymentIntentCreateOptions
             {
-                Amount = (long)(amount * 100), // amount in cents
+                Amount = (long)(amount * 100),
                 Currency = "usd",
                 PaymentMethodTypes = new List<string> { "card" }
             };
@@ -41,9 +41,26 @@ namespace PaymentService.Services
                 CreatedAt = DateTime.UtcNow
             };
 
-            await _payments.InsertOneAsync(payment); // Insert the payment into MongoDB
+            await _payments.InsertOneAsync(payment);
 
             return payment;
         }
+        public async Task<List<Payment>> GetAllPaymentsAsync()
+        {
+            return await _payments.Find(_ => true).ToListAsync();
+        }
+
+        public async Task<Payment?> GetPaymentByIdAsync(string id)
+        {
+            return await _payments.Find(p => p.Id == id).FirstOrDefaultAsync();
+        }
+
+        public async Task<bool> DeletePaymentByIdAsync(string id)
+        {
+            var result = await _payments.DeleteOneAsync(p => p.Id == id);
+            return result.DeletedCount > 0;
+        }
+
     }
+
 }

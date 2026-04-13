@@ -31,17 +31,46 @@ namespace PaymentService.Controllers
             var service = new PaymentIntentService();
             var paymentIntent = service.Create(options);
 
-            // Save the payment to MongoDB
+
             var payment = await _paymentServiceManager.CreatePaymentAsync(
-                orderId: Guid.NewGuid().ToString(), // You can generate order ID however you prefer
-                amount: request.Amount / 100m // Stripe amount is in cents
+                orderId: Guid.NewGuid().ToString(),
+                amount: request.Amount / 100m
             );
 
             return Ok(new
             {
                 clientSecret = paymentIntent.ClientSecret,
-                paymentId = payment.Id // return the payment ID from MongoDB
+                paymentId = payment.Id
             });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllPayments()
+        {
+            var payments = await _paymentServiceManager.GetAllPaymentsAsync();
+            return Ok(payments);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetPaymentById(string id)
+        {
+            var payment = await _paymentServiceManager.GetPaymentByIdAsync(id);
+            if (payment == null)
+            {
+                return NotFound();
+            }
+            return Ok(payment);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePaymentById(string id)
+        {
+            var deleted = await _paymentServiceManager.DeletePaymentByIdAsync(id);
+            if (!deleted)
+            {
+                return NotFound();
+            }
+            return NoContent();
         }
     }
 }

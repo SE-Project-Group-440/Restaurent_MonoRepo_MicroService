@@ -11,7 +11,7 @@ import Footer from "../../Components/Footer";
 
 const containerStyle = {
   width: '100%',
-  height: '100%', // Full height inside the flex box
+  height: '100%', 
 };
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -56,15 +56,40 @@ function DeliveryDetails() {
 
   const handleCompleteDelivery = async () => {
     try {
-      await OrderService.updaterecord(orderId, 'Completed');
+      // Update the order status
+      try {
+        await OrderService.updaterecord(orderId, 'Completed');
+      } catch (orderError) {
+        console.warn("Order status update failed, continuing with delivery completion.", orderError);
+      }
+  
+      // Mark the delivery as complete
       await axios.put(`http://localhost:8084/api/delivery/${deliveryId}/complete`);
-      alert("Delivery and Order marked as complete!");
+  
+      // Send confirmation email
+      const driverEmail = localStorage.getItem("userEmail");
+      if (driverEmail) {
+        const emailPayload = {
+          toEmail: driverEmail,
+          subject: "Delivery Completed Successfully",
+          body: `Dear Driver,\n\nYou have successfully completed the delivery for Order ID: ${orderId}.\n\nThank you for your service!\n\n- Foodie Delivery Team`
+        };
+  
+        await axios.post("http://localhost:8085/api/Email/send", emailPayload); 
+      } else {
+        console.warn("Driver email not found in localStorage.");
+      }
+  
+      alert("Delivery marked as complete!");
       navigate("/DriverProfile");
-    } catch (error) {
-      console.error('Error completing delivery:', error.response?.data || error.message);
-      alert(error.response?.data || "Failed to complete delivery.");
+  
+    } catch (deliveryError) {
+      console.error('Error completing delivery:', deliveryError.response?.data || deliveryError.message);
+      alert(deliveryError.response?.data?.message || "Failed to complete delivery.");
     }
   };
+  
+  
 
   if (!delivery || !pickupCoords || !deliveryCoords) {
     return <div>Loading...</div>;
@@ -103,7 +128,7 @@ function DeliveryDetails() {
               )}
             </ul>
 
-            {/* Complete Delivery Button */}
+           
             {delivery.status !== "Completed" && (
               <div className="mt-30 flex justify-center">
                 <button
