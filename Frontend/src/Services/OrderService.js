@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:8082/api/order",
+  baseURL: "http://localhost:5000/order",
 });
 
 const OrderService = {
@@ -25,7 +25,7 @@ const OrderService = {
     return await api.delete(`/${id}`);
   },
 
-   getByCustomerId: async (customerId) => {
+  getByCustomerId: async (customerId) => {
     return await api.get(`/customer/${customerId}`);
   },
 
@@ -33,7 +33,7 @@ const OrderService = {
     return await api.get(`/restaurant/${restaurantId}`);
   },
 
-  getbystatusandid: async (status,id) => {
+  getbystatusandid: async (status, id) => {
     return await api.get(`/status/${status}/${id}`)
   },
 
@@ -44,8 +44,8 @@ const OrderService = {
   updaterecord: async (orderId, status) => {
     return await api.patch(`/${orderId}?recordstatus=${status}`);
   }
-  
-  
+
+
 };
 
 export default OrderService;

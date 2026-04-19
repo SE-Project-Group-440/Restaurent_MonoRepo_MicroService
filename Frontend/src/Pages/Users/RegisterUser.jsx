@@ -6,8 +6,7 @@ import Footer from "../../Components/Footer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const RegisterUser = () =>
-{
+const RegisterUser = () => {
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -21,20 +20,18 @@ const RegisterUser = () =>
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = async (e) =>
-  {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    try
-    {
+    try {
       await authService.register(form);
       alert("🎉 User registered successfully!");
 
-      await axios.post("http://localhost:8085/api/Email/send", {
+      await axios.post("http://localhost:5000/Email/send", {
         toEmail: form.email,
         subject: "🎉 Welcome to Foodies!",
         body: `Hi ${form.firstName},\n\nYour account has been successfully registered. 🥳\n\nYou can now explore restaurants, place orders, and enjoy delicious meals delivered to your door. 🍕🍔🥗\n\nBon appétit!\n\n-- The Team`,
       });
-      
+
       navigate("/");
 
       setForm({
@@ -44,8 +41,7 @@ const RegisterUser = () =>
         password: "",
         role: "user",
       });
-    } catch (err)
-    {
+    } catch (err) {
       alert("❌ Error: " + err.response?.data?.message || "Something went wrong!");
     }
   };

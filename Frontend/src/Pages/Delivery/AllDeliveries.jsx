@@ -24,12 +24,12 @@ function AllDeliveries() {
       }
 
       // Fetch driver details
-      const driverResponse = await axios.get(`http://localhost:8080/auth/userdetails/${userId}`);
+      const driverResponse = await axios.get(`http://localhost:5000/auth/userdetails/${userId}`);
       const driverData = driverResponse.data.userdetails;
       setDriver(driverData);
 
       // Fetch all deliveries
-      const deliveriesResponse = await axios.get("http://localhost:8084/api/delivery");
+      const deliveriesResponse = await axios.get("http://localhost:5000/delivery");
       const deliveriesData = deliveriesResponse.data;
 
       // Only filter out completed deliveries
@@ -62,7 +62,7 @@ function AllDeliveries() {
 
     axios
       .put(
-        `http://localhost:8084/api/delivery/${deliveryId}/accept`,
+        `http://localhost:5000/delivery/${deliveryId}/accept`,
         {
           driverId: driver._id,
           driverName: driver.firstName,
@@ -83,7 +83,7 @@ function AllDeliveries() {
   const handleSetPending = (deliveryId) => {
     axios
       .put(
-        `http://localhost:8084/api/delivery/${deliveryId}/setPending`,
+        `http://localhost:5000/delivery/${deliveryId}/setPending`,
         {
           driverId: null,
           driverName: null,
@@ -133,7 +133,7 @@ function AllDeliveries() {
             <h2 className="text-4xl font-extrabold text-center text-[#e87c21] mb-8 drop-shadow">
               Pending Deliveries
             </h2>
-            
+
             <ul className="space-y-4">
               {filteredDeliveries.map((delivery) => (
                 <li
@@ -161,7 +161,7 @@ function AllDeliveries() {
                     </ul>
                   </div>
 
-                 
+
                   {delivery.status === "Pending" && delivery.driverId !== driver._id && !hasActiveDelivery && (
                     <button
                       onClick={(e) => {
