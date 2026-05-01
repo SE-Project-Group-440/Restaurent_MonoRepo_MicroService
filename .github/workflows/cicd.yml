@@ -62,43 +62,43 @@ jobs:
 
       - name: Restaurant
         run: |
-          docker build -t ghcr.io/SE-Project-Group-440/restaurant:latest ./restaurant/restaurantservice/restaurantservice
-          docker push ghcr.io/SE-Project-Group-440/restaurant:latest
+          docker build -t ghcr.io/se-project-group-440/restaurant:latest ./restaurant/restaurantservice/restaurantservice
+          docker push ghcr.io/se-project-group-440/restaurant:latest
 
       - name: Order
         run: |
-          docker build -t ghcr.io/SE-Project-Group-440/order:latest ./ordermanagement
-          docker push ghcr.io/SE-Project-Group-440/order:latest
+          docker build -t ghcr.io/se-project-group-440/order:latest ./ordermanagement
+          docker push ghcr.io/se-project-group-440/order:latest
 
       - name: Payment
         run: |
-          docker build -t ghcr.io/SE-Project-Group-440/payment:latest ./paymentservice
-          docker push ghcr.io/SE-Project-Group-440/payment:latest
+          docker build -t ghcr.io/se-project-group-440/payment:latest ./paymentservice
+          docker push ghcr.io/se-project-group-440/payment:latest
 
       - name: Delivery
         run: |
-          docker build -t ghcr.io/SE-Project-Group-440/delivery:latest ./deliveryservice
-          docker push ghcr.io/SE-Project-Group-440/delivery:latest
+          docker build -t ghcr.io/se-project-group-440/delivery:latest ./deliveryservice
+          docker push ghcr.io/se-project-group-440/delivery:latest
 
       - name: Email
         run: |
-          docker build -t ghcr.io/SE-Project-Group-440/email:latest ./EmailService/EmailService
-          docker push ghcr.io/SE-Project-Group-440/email:latest
+          docker build -t ghcr.io/se-project-group-440/email:latest ./EmailService/EmailService
+          docker push ghcr.io/se-project-group-440/email:latest
 
       - name: Auth
         run: |
-          docker build -t ghcr.io/SE-Project-Group-440/auth:latest ./AuthService
-          docker push ghcr.io/SE-Project-Group-440/auth:latest
+          docker build -t ghcr.io/se-project-group-440/auth:latest ./AuthService
+          docker push ghcr.io/se-project-group-440/auth:latest
 
       - name: API Gateway
         run: |
-          docker build -t ghcr.io/SE-Project-Group-440/api-gateway:latest ./ApiGateway
-          docker push ghcr.io/SE-Project-Group-440/api-gateway:latest
+          docker build -t ghcr.io/se-project-group-440/api-gateway:latest ./ApiGateway
+          docker push ghcr.io/se-project-group-440/api-gateway:latest
 
       - name: Frontend
         run: |
-          docker build -t ghcr.io/SE-Project-Group-440/frontend:latest ./frontend
-          docker push ghcr.io/SE-Project-Group-440/frontend:latest
+          docker build -t ghcr.io/se-project-group-440/frontend:latest ./frontend
+          docker push ghcr.io/se-project-group-440/frontend:latest
 
 
   # 🚀 3. Deploy to EC2
