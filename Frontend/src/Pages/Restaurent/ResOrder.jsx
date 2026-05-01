@@ -69,7 +69,7 @@ const ResOrder = () => {
       }
 
       // Step 3: Call your other API (passing orderId and restaurantLocation)
-      const response = await axios.post(`${BASE_URL}/api/Delivery?orderId=${orderId}&resloc=${restaurantLocation}`);
+      const response = await axios.post(`${BASE_URL}/delivery?orderId=${orderId}&resloc=${restaurantLocation}`);
 
       console.log('Final API response:', response.data);
 

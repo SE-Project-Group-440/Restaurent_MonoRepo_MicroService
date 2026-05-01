@@ -215,7 +215,8 @@
       ],
       "UpstreamPathTemplate": "/delivery",
       "UpstreamHttpMethod": [
-        "GET"
+        "GET",
+        "POST"
       ],
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
