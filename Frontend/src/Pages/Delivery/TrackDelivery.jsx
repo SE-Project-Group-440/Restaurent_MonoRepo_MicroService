@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { BASE_URL } from "../../Hooks/BaseUrl";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -29,7 +30,7 @@ function TrackDelivery() {
   const [eta, setEta] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/delivery/${deliveryId}`)
+    axios.get(`${BASE_URL}/delivery/${deliveryId}`)
       .then(response => {
         setDelivery(response.data);
         getCoordinates(response.data.pickupLocation, setPickupCoords);
