@@ -9,7 +9,7 @@ public static class RestaurentController
 {
     public static void MapRestaurentEndpoints(this IEndpointRouteBuilder routes)
     {
-        var group = routes.MapGroup("/Restaurent").WithTags(nameof(Restaurent));
+        var group = routes.MapGroup("/restaurant").WithTags(nameof(Restaurent));
 
         var mongoClient = routes.ServiceProvider.GetRequiredService<IMongoClient>();
         var database = mongoClient.GetDatabase("RestaurantDB"); 
@@ -45,7 +45,7 @@ public static class RestaurentController
         group.MapPost("/", async (Restaurent model) =>
         {
             await collection.InsertOneAsync(model);
-            return Results.Created($"/Restaurent/{model.Id}", model);
+            return Results.Created($"/restaurant/{model.Id}", model);
         })
         .WithName("CreateRestaurent")
         .WithOpenApi();

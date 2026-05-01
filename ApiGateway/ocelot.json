@@ -13,7 +13,7 @@
           "Port": 8086
         }
       ],
-      "UpstreamPathTemplate": "/Restaurant/menu",
+      "UpstreamPathTemplate": "/restaurant/menu",
       "UpstreamHttpMethod": [
         "GET"
       ],
@@ -39,7 +39,7 @@
           "Port": 8086
         }
       ],
-      "UpstreamPathTemplate": "/Restaurant/menu/{everything}",
+      "UpstreamPathTemplate": "/restaurant/menu/{everything}",
       "UpstreamHttpMethod": [
         "GET",
         "POST",
@@ -59,7 +59,7 @@
       }
     },
     {
-      "DownstreamPathTemplate": "/Restaurant/{everything}",
+      "DownstreamPathTemplate": "/restaurant/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -71,7 +71,7 @@
           "Port": 8086
         }
       ],
-      "UpstreamPathTemplate": "/Restaurant/Restaurant/{everything}",
+      "UpstreamPathTemplate": "/restaurant/restaurant/{everything}",
       "UpstreamHttpMethod": [
         "GET",
         "POST",

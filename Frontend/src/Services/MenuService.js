@@ -6,12 +6,12 @@ const api = axios.create({
 });
 
 const MenuService = {
-  getAll: () => api.get('/Menu'),
-  getById: (id) => api.get(`/Menu/${id}`),
-  getByResId: (id) => api.get(`/Menu/getbyresid/${id}`),
-  create: (data) => api.post('/Menu', data),
-  update: (id, data) => api.put(`/Menu/${id}`, data),
-  delete: (id) => api.delete(`/Menu/${id}`),
+  getAll: () => api.get('/menu'),
+  getById: (id) => api.get(`/menu/${id}`),
+  getByResId: (id) => api.get(`/menu/getbyresid/${id}`),
+  create: (data) => api.post('/menu', data),
+  update: (id, data) => api.put(`/menu/${id}`, data),
+  delete: (id) => api.delete(`/menu/${id}`),
 };
 
 export default MenuService;

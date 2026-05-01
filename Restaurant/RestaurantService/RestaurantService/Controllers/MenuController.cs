@@ -8,7 +8,7 @@ public static class MenuController
 {
     public static void MapMenuEndpoints (this IEndpointRouteBuilder routes)
     {
-        var group = routes.MapGroup("/Menu").WithTags(nameof(Menu));
+        var group = routes.MapGroup("/menu").WithTags(nameof(Menu));
 
         var mongoClient = routes.ServiceProvider.GetRequiredService<IMongoClient>();
         var database = mongoClient.GetDatabase("RestaurantDB");
@@ -41,7 +41,7 @@ public static class MenuController
         group.MapPost("/",async (Menu model) =>
         {
             await collection.InsertOneAsync(model);
-            return Results.Created($"/Menu/{model.Id}", model);
+            return Results.Created($"/menu/{model.Id}", model);
         })
         .WithName("CreateMenu")
         .WithOpenApi();
