@@ -59,7 +59,6 @@ jobs:
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       # 🔥 Build & Push services
-
       - name: Restaurant
         run: |
           docker build -t ghcr.io/se-project-group-440/restaurant:latest ./Restaurant/RestaurantService/RestaurantService
@@ -67,17 +66,17 @@ jobs:
 
       - name: Order
         run: |
-          docker build -t ghcr.io/se-project-group-440/order:latest ./ordermanagement
+          docker build -t ghcr.io/se-project-group-440/order:latest ./OrderManagement
           docker push ghcr.io/se-project-group-440/order:latest
 
       - name: Payment
         run: |
-          docker build -t ghcr.io/se-project-group-440/payment:latest ./paymentservice
+          docker build -t ghcr.io/se-project-group-440/payment:latest ./PaymentService
           docker push ghcr.io/se-project-group-440/payment:latest
 
       - name: Delivery
         run: |
-          docker build -t ghcr.io/se-project-group-440/delivery:latest ./deliveryservice
+          docker build -t ghcr.io/se-project-group-440/delivery:latest ./DeliveryService
           docker push ghcr.io/se-project-group-440/delivery:latest
 
       - name: Email
@@ -87,7 +86,7 @@ jobs:
 
       - name: Auth
         run: |
-          docker build -t ghcr.io/se-project-group-440/auth:latest ./AuthService
+          docker build -t ghcr.io/se-project-group-440/auth:latest "./Auth Service"
           docker push ghcr.io/se-project-group-440/auth:latest
 
       - name: API Gateway
@@ -97,9 +96,8 @@ jobs:
 
       - name: Frontend
         run: |
-          docker build -t ghcr.io/se-project-group-440/frontend:latest ./frontend
+          docker build -t ghcr.io/se-project-group-440/frontend:latest ./Frontend
           docker push ghcr.io/se-project-group-440/frontend:latest
-
 
   # 🚀 3. Deploy to EC2
   deploy:
