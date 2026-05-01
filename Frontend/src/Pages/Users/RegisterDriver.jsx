@@ -4,6 +4,7 @@ import authService from "../../Services/AuthService";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 import axios from "axios";
+import { BASE_URL } from "../../Hooks/BaseUrl";
 
 
 const RegisterDriver = () => {
@@ -24,7 +25,7 @@ const RegisterDriver = () => {
       await authService.register(form);
       alert("🎉 User registered successfully!");
 
-      await axios.post("http://localhost:5000/Email/send", {
+      await axios.post(`${BASE_URL}/Email/send`, {
         toEmail: form.email,
         subject: "🎉 Welcome to Our Delivery Team!",
         body: `Hi ${form.firstName},\n\nWelcome aboard! Your account has been successfully registered.\n\nHappy delivering! 🚗\n\n-- Team`,
