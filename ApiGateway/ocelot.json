@@ -13,11 +13,18 @@
           "Port": 8086
         }
       ],
-      "UpstreamPathTemplate": "/restaurant/menu",
+      "UpstreamPathTemplate": "/Restaurant/menu",
       "UpstreamHttpMethod": [
         "GET"
       ],
-      "RouteIsCaseSensitive": false
+      "RouteIsCaseSensitive": false,
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
     },
     {
       "DownstreamPathTemplate": "/menu/{everything}",
@@ -32,7 +39,7 @@
           "Port": 8086
         }
       ],
-      "UpstreamPathTemplate": "/restaurant/menu/{everything}",
+      "UpstreamPathTemplate": "/Restaurant/menu/{everything}",
       "UpstreamHttpMethod": [
         "GET",
         "POST",
@@ -42,10 +49,17 @@
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
       },
-      "RouteIsCaseSensitive": false
+      "RouteIsCaseSensitive": false,
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
     },
     {
-      "DownstreamPathTemplate": "/restaurant/{everything}",
+      "DownstreamPathTemplate": "/Restaurant/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -57,7 +71,7 @@
           "Port": 8086
         }
       ],
-      "UpstreamPathTemplate": "/restaurant/restaurant/{everything}",
+      "UpstreamPathTemplate": "/Restaurant/Restaurant/{everything}",
       "UpstreamHttpMethod": [
         "GET",
         "POST",
@@ -67,7 +81,14 @@
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
       },
-      "RouteIsCaseSensitive": false
+      "RouteIsCaseSensitive": false,
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
     },
     {
       "DownstreamPathTemplate": "/api/order/{everything}",
@@ -92,7 +113,14 @@
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
       },
-      "RouteIsCaseSensitive": false
+      "RouteIsCaseSensitive": false,
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
     },
     {
       "DownstreamPathTemplate": "/api/payment/{everything}",
@@ -117,7 +145,14 @@
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
       },
-      "RouteIsCaseSensitive": false
+      "RouteIsCaseSensitive": false,
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
     },
     {
       "DownstreamPathTemplate": "/api/delivery/{everything}",
@@ -142,7 +177,14 @@
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
       },
-      "RouteIsCaseSensitive": false
+      "RouteIsCaseSensitive": false,
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
     },
     {
       "DownstreamPathTemplate": "/api/delivery",
@@ -163,6 +205,13 @@
       ],
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
       }
     },
     {
@@ -179,7 +228,14 @@
         "GET",
         "POST"
       ],
-      "RouteIsCaseSensitive": false
+      "RouteIsCaseSensitive": false,
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
     },
     {
       "DownstreamPathTemplate": "/auth/{everything}",
