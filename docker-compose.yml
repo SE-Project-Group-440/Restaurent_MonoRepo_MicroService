@@ -44,6 +44,7 @@ services:
       - ACCESS_TOKEN_SECRET=${ACCESS_TOKEN_SECRET}
       - PORT=8080
       - MONGO_URL=mongodb+srv://s1sewe35:s1sewe35@group35.z5ucr.mongodb.net/Microservice_AuthService?retryWrites=true&w=majority&appName=Group35
+      - REFRESH_TOKEN_SECRET=K9xvQ7zT2pL8rN4mWc6Hf1uE5Yb3Dg0JtV2sA9kZq8RjP4xC7nM6wLh5F3B2uT1
 
   api-gateway:
     image: ghcr.io/se-project-group-440/api-gateway:latest
