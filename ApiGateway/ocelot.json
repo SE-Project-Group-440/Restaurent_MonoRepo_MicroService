@@ -27,6 +27,33 @@
       }
     },
     {
+  "DownstreamPathTemplate": "/restaurant",
+  "DownstreamScheme": "http",
+  "DownstreamHostAndPorts": [
+    {
+      "Host": "restaurant",
+      "Port": 8081
+    },
+    {
+      "Host": "restaurant",
+      "Port": 8086
+    }
+  ],
+  "UpstreamPathTemplate": "/restaurant",
+  "UpstreamHttpMethod": [ "GET" ],
+  "LoadBalancerOptions": {
+    "Type": "RoundRobin"
+  },
+  "RouteIsCaseSensitive": false,
+  "AuthenticationOptions": {
+    "AuthenticationProviderKey": "Bearer",
+    "AllowedScopes": []
+  },
+  "AddHeadersToRequest": {
+    "Authorization": "{Authorization}"
+  }
+},
+    {
       "DownstreamPathTemplate": "/menu/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
