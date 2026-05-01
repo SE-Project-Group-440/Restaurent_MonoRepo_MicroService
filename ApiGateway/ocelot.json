@@ -57,7 +57,9 @@
         "GET",
         "POST",
         "PUT",
-        "DELETE"
+        "DELETE",
+  "PATCH"
+        
       ],
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
@@ -82,7 +84,8 @@
         "GET",
         "POST",
         "PUT",
-        "DELETE"
+        "DELETE",
+  "PATCH"
       ],
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
@@ -127,7 +130,8 @@
         "GET",
         "POST",
         "PUT",
-        "DELETE"
+        "DELETE",
+  "PATCH"
       ],
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
@@ -152,7 +156,8 @@
         "GET",
         "POST",
         "PUT",
-        "DELETE"
+        "DELETE",
+  "PATCH"
       ],
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
@@ -187,7 +192,8 @@
         "GET",
         "POST",
         "PUT",
-        "DELETE"
+        "DELETE",
+  "PATCH"
       ],
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
