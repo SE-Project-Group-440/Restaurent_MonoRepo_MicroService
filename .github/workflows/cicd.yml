@@ -99,21 +99,27 @@ jobs:
           docker build -t ghcr.io/se-project-group-440/frontend:latest ./Frontend
           docker push ghcr.io/se-project-group-440/frontend:latest
 
-   # 🚀 3. Deploy (RUNS INSIDE EC2)
+  # 🚀 3. Deploy to EC2
   deploy:
     needs: build-and-push
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy on EC2
-        run: |
-          cd ~/app/ctse
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
 
-          # Pull latest code from correct branch
-          git pull origin ${{ github.ref_name }}
+          script: |
+            cd ~/app/ctse
 
-          # Pull latest images
-          docker compose pull
+            # Pull latest code from correct branch
+            git pull origin ${{ github.ref_name }}
 
-          # Restart containers
-          docker compose up -d
+            # Pull latest images from GHCR
+            docker compose pull
+
+            # Restart containers
+            docker compose up -d
