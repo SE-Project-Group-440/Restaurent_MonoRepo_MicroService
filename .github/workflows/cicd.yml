@@ -115,8 +115,10 @@ jobs:
           script: |
             cd ~/app/ctse
 
-            # Pull latest code from correct branch
-            git pull origin ${{ github.ref_name }}
+            cd ~/app/ctse
+            git fetch origin
+
+            git reset --hard origin/${{ github.ref_name }}
 
             # Pull latest images from GHCR
             docker-compose pull
