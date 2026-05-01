@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import OrderService from '../Services/OrderService';
-import { BASE_URL } from "../Hooks/BaseUrl";
 
 const CARD_ELEMENT_OPTIONS = {
     style: {
@@ -41,7 +40,7 @@ const CheckoutForm = ({ orderId, amount, orderDetails, onPaymentSuccess }) => {
         setError('');
 
         try {
-            const { data } = await axios.post(`${BASE_URL}/api/payment/create-payment-intent`, {
+            const { data } = await axios.post("http://localhost:5000/api/payment/create-payment-intent", {
                 amount: amount * 100,
                 currency: "usd",
                 paymentMethodType: "card",
@@ -73,7 +72,7 @@ const CheckoutForm = ({ orderId, amount, orderDetails, onPaymentSuccess }) => {
                             amount: amount,
                         };
 
-                        await axios.post(`${BASE_URL}/api/sms/send-receipt`, paymentData);
+                        await axios.post("http://localhost:5000/api/sms/send-receipt", paymentData);
                         console.log('Receipt sent to mobile number.');
                     } catch (updateError) {
                         console.error('Failed to update order status:', updateError);

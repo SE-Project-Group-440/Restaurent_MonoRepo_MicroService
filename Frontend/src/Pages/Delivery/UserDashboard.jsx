@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { BASE_URL } from "../../Hooks/BaseUrl";
 import { useNavigate } from 'react-router-dom';
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
@@ -17,7 +16,7 @@ function UserDashboard() {
       return;
     }
 
-    axios.get(`${BASE_URL}/delivery/user/${userId}`) // Fetch deliveries for specific user
+    axios.get(`http://localhost:5000/delivery/user/${userId}`) // Fetch deliveries for specific user
       .then(response => {
         // Filter out completed deliveries
         const activeDeliveries = response.data.filter(d => d.status !== 'Completed');

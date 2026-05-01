@@ -1,5 +1,6 @@
 import axios from "axios";
-import { BASE_URL } from "../Hooks/BaseUrl";
+
+const BASE_URL = "http://localhost:5000";
 
 // Add token to header
 const setAuthHeaders = (token) => {

@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 import axios from "axios";
-import { BASE_URL } from "../../Hooks/BaseUrl";
 
 const RegisterRestaurantOwner = () => {
   const [form, setForm] = useState({
@@ -26,7 +25,7 @@ const RegisterRestaurantOwner = () => {
       await authService.register(form);
       alert("🎉 User registered successfully!");
 
-      await axios.post(`${BASE_URL}/Email/send`, {
+      await axios.post("http://localhost:5000/Email/send", {
         toEmail: form.email,
         subject: "🍽️ Welcome Restaurant Owner!",
         body: `Hi ${form.firstName},\n\nWelcome aboard as a restaurant owner! Your account has been successfully registered.\n\nYou can now manage your restaurant, add menu items, and start receiving orders.\n\nWishing you great success!\n\n-- The Team`,

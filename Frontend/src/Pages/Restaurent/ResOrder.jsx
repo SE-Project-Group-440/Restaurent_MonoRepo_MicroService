@@ -4,7 +4,6 @@ import OrderService from "../../Services/OrderService"; // Update the path if ne
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 import axios from "axios";
-import { BASE_URL } from "../../Hooks/BaseUrl";
 
 const ResOrder = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -69,7 +68,7 @@ const ResOrder = () => {
       }
 
       // Step 3: Call your other API (passing orderId and restaurantLocation)
-      const response = await axios.post(`${BASE_URL}/api/Delivery?orderId=${orderId}&resloc=${restaurantLocation}`);
+      const response = await axios.post(`http://localhost:5000/api/Delivery?orderId=${orderId}&resloc=${restaurantLocation}`);
 
       console.log('Final API response:', response.data);
 

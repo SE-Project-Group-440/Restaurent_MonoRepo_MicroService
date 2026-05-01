@@ -4,7 +4,6 @@ import authService from "../../Services/AuthService";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 import axios from "axios";
-import { BASE_URL } from "../../Hooks/BaseUrl";
 import { useNavigate } from "react-router-dom";
 
 const RegisterUser = () => {
@@ -27,7 +26,7 @@ const RegisterUser = () => {
       await authService.register(form);
       alert("🎉 User registered successfully!");
 
-      await axios.post(`${BASE_URL}/Email/send`, {
+      await axios.post("http://localhost:5000/Email/send", {
         toEmail: form.email,
         subject: "🎉 Welcome to Foodies!",
         body: `Hi ${form.firstName},\n\nYour account has been successfully registered. 🥳\n\nYou can now explore restaurants, place orders, and enjoy delicious meals delivered to your door. 🍕🍔🥗\n\nBon appétit!\n\n-- The Team`,

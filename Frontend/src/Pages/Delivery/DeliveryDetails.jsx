@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { BASE_URL } from "../../Hooks/BaseUrl";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -32,7 +31,7 @@ function DeliveryDetails() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`${BASE_URL}/delivery/${deliveryId}`)
+    axios.get(`http://localhost:5000/delivery/${deliveryId}`)
       .then(response => {
         setDelivery(response.data);
         setOrderId(response.data.orderId);
@@ -65,7 +64,7 @@ function DeliveryDetails() {
       }
 
       // Mark the delivery as complete
-      await axios.put(`${BASE_URL}/delivery/${deliveryId}/complete`);
+      await axios.put(`http://localhost:5000/delivery/${deliveryId}/complete`);
 
       // Send confirmation email
       const driverEmail = localStorage.getItem("userEmail");
@@ -76,7 +75,7 @@ function DeliveryDetails() {
           body: `Dear Driver,\n\nYou have successfully completed the delivery for Order ID: ${orderId}.\n\nThank you for your service!\n\n- Foodie Delivery Team`
         };
 
-        await axios.post(`${BASE_URL}/Email/send`, emailPayload);
+        await axios.post("http://localhost:5000/Email/send", emailPayload);
       } else {
         console.warn("Driver email not found in localStorage.");
       }

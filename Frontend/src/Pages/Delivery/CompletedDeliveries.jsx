@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { BASE_URL } from "../../Hooks/BaseUrl";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 
@@ -22,7 +21,7 @@ function CompletedDeliveries() {
         }
 
         // Fetch completed deliveries for the logged-in user
-        const deliveriesResponse = await axios.get(`${BASE_URL}/delivery/completed/${userId}`);
+        const deliveriesResponse = await axios.get(`http://localhost:5000/delivery/completed/${userId}`);
         const deliveriesData = deliveriesResponse.data;
 
         if (deliveriesData && deliveriesData.length > 0) {
