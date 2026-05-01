@@ -1,66 +1,54 @@
+version: "3.9"
+
 services:
   restaurant:
-    build:
-      context: ./restaurant/restaurantservice/restaurantservice
-      dockerfile: Dockerfile
+    image: ghcr.io/se-project-group-440/restaurant:latest
     ports:
       - "8081:8081"
     environment:
       - ASPNETCORE_URLS=http://+:8081
 
   order:
-    build:
-      context: ./ordermanagement
-      dockerfile: Dockerfile
+    image: ghcr.io/se-project-group-440/order:latest
     ports:
       - "8082:8082"
     environment:
       - ASPNETCORE_URLS=http://+:8082
 
   payment:
-    build:
-      context: ./paymentservice
-      dockerfile: Dockerfile
+    image: ghcr.io/se-project-group-440/payment:latest
     ports:
       - "8083:8083"
     environment:
       - ASPNETCORE_URLS=http://+:8083
 
   delivery:
-    build:
-      context: ./deliveryservice
-      dockerfile: Dockerfile
+    image: ghcr.io/se-project-group-440/delivery:latest
     ports:
       - "8084:8084"
     environment:
       - ASPNETCORE_URLS=http://+:8084
 
   email:
-    build:
-      context: ./EmailService/EmailService
-      dockerfile: Dockerfile
+    image: ghcr.io/se-project-group-440/email:latest
     ports:
       - "8085:8085"
     environment:
       - ASPNETCORE_URLS=http://+:8085
 
   auth:
-    environment:
-      - ACCESS_TOKEN_SECRET=supersecret1234567890supersecret1234
-    build:
-      context: "./Auth service"
-      dockerfile: Dockerfile
+    image: ghcr.io/se-project-group-440/auth:latest
     ports:
       - "8080:8080"
+    environment:
+      - ACCESS_TOKEN_SECRET=${ACCESS_TOKEN_SECRET}
 
   api-gateway:
-    environment:
-      - Jwt__Secret=supersecret1234567890supersecret1234
-    build:
-      context: ./ApiGateway
-      dockerfile: Dockerfile
+    image: ghcr.io/se-project-group-440/api-gateway:latest
     ports:
       - "5000:5000"
+    environment:
+      - Jwt__Secret=${JWT_SECRET}
     depends_on:
       - restaurant
       - order
@@ -70,10 +58,8 @@ services:
       - auth
 
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
+    image: ghcr.io/se-project-group-440/frontend:latest
     ports:
       - "5173:5173"
     depends_on:
-      - api-gateway   
+      - api-gateway
