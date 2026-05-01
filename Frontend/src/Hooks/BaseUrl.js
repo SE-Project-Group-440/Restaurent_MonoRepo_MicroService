@@ -20,4 +20,4 @@ baseURL.interceptors.request.use((config) => {
   return config;
 });
 
-export default baseURL;
+export default baseURL; 

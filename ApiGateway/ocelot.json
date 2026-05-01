@@ -17,14 +17,7 @@
       "UpstreamHttpMethod": [
         "GET"
       ],
-      "RouteIsCaseSensitive": false,
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      },
-      "AddHeadersToRequest": {
-        "Authorization": "{Authorization}"
-      }
+      "RouteIsCaseSensitive": false
     },
     {
       "DownstreamPathTemplate": "/menu/{everything}",
@@ -49,14 +42,7 @@
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
       },
-      "RouteIsCaseSensitive": false,
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      },
-      "AddHeadersToRequest": {
-        "Authorization": "{Authorization}"
-      }
+      "RouteIsCaseSensitive": false
     },
     {
       "DownstreamPathTemplate": "/restaurant/{everything}",
@@ -81,14 +67,7 @@
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
       },
-      "RouteIsCaseSensitive": false,
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      },
-      "AddHeadersToRequest": {
-        "Authorization": "{Authorization}"
-      }
+      "RouteIsCaseSensitive": false
     },
     {
       "DownstreamPathTemplate": "/api/order/{everything}",
@@ -113,14 +92,7 @@
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
       },
-      "RouteIsCaseSensitive": false,
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      },
-      "AddHeadersToRequest": {
-        "Authorization": "{Authorization}"
-      }
+      "RouteIsCaseSensitive": false
     },
     {
       "DownstreamPathTemplate": "/api/payment/{everything}",
@@ -145,14 +117,7 @@
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
       },
-      "RouteIsCaseSensitive": false,
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      },
-      "AddHeadersToRequest": {
-        "Authorization": "{Authorization}"
-      }
+      "RouteIsCaseSensitive": false
     },
     {
       "DownstreamPathTemplate": "/api/delivery/{everything}",
@@ -177,14 +142,7 @@
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
       },
-      "RouteIsCaseSensitive": false,
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      },
-      "AddHeadersToRequest": {
-        "Authorization": "{Authorization}"
-      }
+      "RouteIsCaseSensitive": false
     },
     {
       "DownstreamPathTemplate": "/api/delivery",
@@ -205,13 +163,6 @@
       ],
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
-      },
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      },
-      "AddHeadersToRequest": {
-        "Authorization": "{Authorization}"
       }
     },
     {
@@ -228,14 +179,7 @@
         "GET",
         "POST"
       ],
-      "RouteIsCaseSensitive": false,
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      },
-      "AddHeadersToRequest": {
-        "Authorization": "{Authorization}"
-      }
+      "RouteIsCaseSensitive": false
     },
     {
       "DownstreamPathTemplate": "/auth/{everything}",
