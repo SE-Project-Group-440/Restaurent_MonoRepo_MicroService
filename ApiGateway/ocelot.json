@@ -20,50 +20,25 @@
       "RouteIsCaseSensitive": false
     },
     {
-      "DownstreamPathTemplate": "/api/restaurant",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "restaurant",
-          "Port": 8081
-        },
-        {
-          "Host": "restaurant",
-          "Port": 8086
-        }
-      ],
-      "UpstreamPathTemplate": "/restaurant",
-      "UpstreamHttpMethod": [
-        "GET",
-        "POST"
-      ],
-      "LoadBalancerOptions": {
-        "Type": "RoundRobin"
-      }
+  "DownstreamPathTemplate": "/restaurant",
+  "DownstreamScheme": "http",
+  "DownstreamHostAndPorts": [
+    {
+      "Host": "restaurant",
+      "Port": 8081
     },
     {
-      "DownstreamPathTemplate": "/api/restaurant/{id}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "restaurant",
-          "Port": 8081
-        },
-        {
-          "Host": "restaurant",
-          "Port": 8086
-        }
-      ],
-      "UpstreamPathTemplate": "/restaurant/{id}",
-      "UpstreamHttpMethod": [
-        "GET",
-        "PUT",
-        "DELETE"
-      ],
-      "LoadBalancerOptions": {
-        "Type": "RoundRobin"
-      }
-    },
+      "Host": "restaurant",
+      "Port": 8086
+    }
+  ],
+  "UpstreamPathTemplate": "/restaurant",
+  "UpstreamHttpMethod": [ "GET" ],
+  "LoadBalancerOptions": {
+    "Type": "RoundRobin"
+  },
+  "RouteIsCaseSensitive": false
+},
     {
       "DownstreamPathTemplate": "/menu/{everything}",
       "DownstreamScheme": "http",
@@ -102,7 +77,7 @@
           "Port": 8086
         }
       ],
-      "UpstreamPathTemplate": "/restaurant/restaurant/{everything}",
+      "UpstreamPathTemplate": "/restaurant/{everything}",
       "UpstreamHttpMethod": [
         "GET",
         "POST",
@@ -163,6 +138,7 @@
         "Type": "RoundRobin"
       },
       "RouteIsCaseSensitive": false
+      
     },
     {
       "DownstreamPathTemplate": "/api/delivery/{everything}",
@@ -187,14 +163,7 @@
       "LoadBalancerOptions": {
         "Type": "RoundRobin"
       },
-      "RouteIsCaseSensitive": false,
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      },
-      "AddHeadersToRequest": {
-        "Authorization": "{Authorization}"
-      }
+      "RouteIsCaseSensitive": false
     },
     {
       "DownstreamPathTemplate": "/api/delivery",
