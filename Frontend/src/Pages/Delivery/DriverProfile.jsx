@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { BASE_URL } from "../../Hooks/BaseUrl";
 import { useNavigate } from "react-router-dom";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
@@ -22,12 +23,12 @@ function DriverProfile() {
         }
 
         // Fetch driver details
-        const driverResponse = await axios.get(`http://localhost:5000/auth/userdetails/${userId}`);
+        const driverResponse = await axios.get(`${BASE_URL}/auth/userdetails/${userId}`);
         const driverData = driverResponse.data.userdetails;
         setDriver(driverData);
 
         // Fetch deliveries
-        const deliveriesResponse = await axios.get("http://localhost:5000/delivery");
+        const deliveriesResponse = await axios.get(`${BASE_URL}/delivery`);
         const deliveriesData = deliveriesResponse.data;
 
 
@@ -55,7 +56,7 @@ function DriverProfile() {
     }
 
     axios
-      .put(`http://localhost:5000/delivery/${deliveryId}/accept`, {
+      .put(`${BASE_URL}/delivery/${deliveryId}/accept`, {
         driverId: driver._id,
         driverName: driver.firstName,
         driverContact: driver.contactno,
@@ -72,7 +73,7 @@ function DriverProfile() {
 
   const handleSetPending = (deliveryId) => {
     axios
-      .put(`http://localhost:5000/delivery/${deliveryId}/setPending`, {
+      .put(`${BASE_URL}/delivery/${deliveryId}/setPending`, {
         driverId: null,
         driverName: null,
         driverContact: null,

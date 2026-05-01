@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { BASE_URL } from "../../Hooks/BaseUrl";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 
@@ -7,7 +8,7 @@ function AdminDeliveries() {
   const [deliveries, setDeliveries] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/delivery')
+    axios.get(`${BASE_URL}/delivery`)
       .then(res => setDeliveries(res.data))
       .catch(err => console.error("Error fetching deliveries:", err));
   }, []);

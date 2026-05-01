@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const backendBaseUrl = "http://localhost:5000";
+export const BASE_URL = "http://16.16.139.104:5000"; // Update port if your backend/gateway uses a different one
+const backendBaseUrl = BASE_URL;
 
 const baseURL = axios.create({
   baseURL: backendBaseUrl,
