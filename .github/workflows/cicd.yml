@@ -62,9 +62,8 @@ jobs:
 
       - name: Restaurant
         run: |
-          docker build -t ghcr.io/se-project-group-440/restaurant:latest ./restaurant/restaurantservice/restaurantservice
+          docker build -t ghcr.io/se-project-group-440/restaurant:latest ./Restaurant/RestaurantService
           docker push ghcr.io/se-project-group-440/restaurant:latest
-
       - name: Order
         run: |
           docker build -t ghcr.io/se-project-group-440/order:latest ./ordermanagement
