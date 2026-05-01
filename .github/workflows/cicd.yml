@@ -118,6 +118,8 @@ jobs:
 
             git reset --hard origin/${{ github.ref_name }}
 
+            docker-compose down
+
             # Pull latest images from GHCR
             docker-compose pull
 
