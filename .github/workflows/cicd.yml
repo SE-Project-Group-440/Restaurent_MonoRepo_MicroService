@@ -124,4 +124,4 @@ jobs:
             # Restart containers
             docker-compose up -d
 
-            #test if containers are running
+            #test
