@@ -5,7 +5,7 @@ using RestaurantService.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var allowedOrigin = "http://localhost:5173";
+var allowedOrigin = "http://16.16.139.104:5173";
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp",

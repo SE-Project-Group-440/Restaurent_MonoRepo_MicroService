@@ -4,7 +4,7 @@ using OrderManagement.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Define allowed origin
-var allowedOrigin = "http://localhost:5173";
+var allowedOrigin = "http://16.16.139.104:5173";
 
 // Register MongoClient as a singleton using the connection string
 var mongoConnectionString = builder.Configuration.GetConnectionString("MongoDb");
