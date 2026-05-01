@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const backendBaseUrl = "http://localhost:5000";
+const backendBaseUrl = "http://16.16.139.104:5173";
 
 const baseURL = axios.create({
   baseURL: backendBaseUrl,
