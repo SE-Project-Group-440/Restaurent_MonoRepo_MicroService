@@ -20,25 +20,50 @@
       "RouteIsCaseSensitive": false
     },
     {
-  "DownstreamPathTemplate": "/restaurant",
-  "DownstreamScheme": "http",
-  "DownstreamHostAndPorts": [
-    {
-      "Host": "restaurant",
-      "Port": 8081
+      "DownstreamPathTemplate": "/api/restaurant",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "restaurant",
+          "Port": 8081
+        },
+        {
+          "Host": "restaurant",
+          "Port": 8086
+        }
+      ],
+      "UpstreamPathTemplate": "/restaurant",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST"
+      ],
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     {
-      "Host": "restaurant",
-      "Port": 8086
-    }
-  ],
-  "UpstreamPathTemplate": "/restaurant",
-  "UpstreamHttpMethod": [ "GET" ],
-  "LoadBalancerOptions": {
-    "Type": "RoundRobin"
-  },
-  "RouteIsCaseSensitive": false
-},
+      "DownstreamPathTemplate": "/api/restaurant/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "restaurant",
+          "Port": 8081
+        },
+        {
+          "Host": "restaurant",
+          "Port": 8086
+        }
+      ],
+      "UpstreamPathTemplate": "/restaurant/{id}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "PUT",
+        "DELETE"
+      ],
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
+    },
     {
       "DownstreamPathTemplate": "/menu/{everything}",
       "DownstreamScheme": "http",
