@@ -43,7 +43,7 @@ services:
     environment:
       - ACCESS_TOKEN_SECRET=${ACCESS_TOKEN_SECRET}
       - PORT=8080
-      - MONGO_URI=mongodb+srv://s1sewe35:s1sewe35@group35.z5ucr.mongodb.net/Microservice_AuthService?retryWrites=true&w=majority&appName=Group35
+      - MONGO_URL=mongodb+srv://s1sewe35:s1sewe35@group35.z5ucr.mongodb.net/Microservice_AuthService?retryWrites=true&w=majority&appName=Group35
 
   api-gateway:
     image: ghcr.io/se-project-group-440/api-gateway:latest
