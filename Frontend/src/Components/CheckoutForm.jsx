@@ -1,5 +1,5 @@
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
-import axios from "axios";
+import api from "../Hooks/BaseUrl";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -41,7 +41,7 @@ const CheckoutForm = ({ orderId, amount, orderDetails, onPaymentSuccess }) => {
         setError('');
 
         try {
-            const { data } = await axios.post(`${BASE_URL}/api/payment/create-payment-intent`, {
+            const { data } = await api.post(`/payment/create-payment-intent`, {
                 amount: amount * 100,
                 currency: "usd",
                 paymentMethodType: "card",
@@ -73,7 +73,7 @@ const CheckoutForm = ({ orderId, amount, orderDetails, onPaymentSuccess }) => {
                             amount: amount,
                         };
 
-                        await axios.post(`${BASE_URL}/api/sms/send-receipt`, paymentData);
+                        await api.post(`/sms/send-receipt`, paymentData);
                         console.log('Receipt sent to mobile number.');
                     } catch (updateError) {
                         console.error('Failed to update order status:', updateError);
